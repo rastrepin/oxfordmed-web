@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F4FBFE;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E0F5FD;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1DB7ED;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#48C7F0;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Top accent bar -->
+  <rect width="1200" height="8" fill="url(#accent)"/>
+
+  <!-- Decorative circles -->
+  <circle cx="1100" cy="120" r="200" fill="#1DB7ED" fill-opacity="0.06"/>
+  <circle cx="1050" cy="500" r="140" fill="#6BD333" fill-opacity="0.07"/>
+  <circle cx="80" cy="530" r="120" fill="#1DB7ED" fill-opacity="0.05"/>
+
+  <!-- Oxford Medical logo (embedded, scaled) -->
+  <g transform="translate(80, 200) scale(0.52)">
+    <!-- X mark (cyan) -->
+    <path fill="#1DB7ED" d="M144.66,46.262l29.172-29.179c1.477-1.484,2.538-4.976-0.094-7.595c-2.337-2.371-5.789-1.854-7.588-0.081
+      l-29.159,29.166L107.833,9.407c-1.504-1.484-4.996-2.552-7.615,0.074c-2.364,2.377-1.854,5.829-0.094,7.602l29.186,29.179
+      l-29.186,29.146c-1.464,1.498-2.525,4.989,0.094,7.615c2.377,2.364,5.829,1.854,7.615,0.074l29.159-29.166l29.159,29.166
+      c1.491,1.484,4.996,2.552,7.588-0.074c2.377-2.371,1.867-5.822,0.094-7.615L144.66,46.262z"/>
+    <!-- Diamond (cyan) -->
+    <path fill="#1DB7ED" d="M51.879,4.391c-1.598-1.504-3.492-2.189-5.292-2.189c-1.867,0-3.761,0.685-5.386,2.283L5.314,40.379
+      c-0.121,0.114-2.78,2.27-2.78,5.883c0,3.317,2.108,5.191,2.283,5.359l35.874,35.888c0.121,0.114,2.229,2.8,5.856,2.8
+      c3.143,0,5.238-2.102,5.413-2.283c0,0,36.385-36.331,36.532-36.532c1.451-1.551,2.163-3.432,2.163-5.231
+      c0-2.686-1.276-4.204-2.404-5.5C88.116,40.574,51.879,4.391,51.879,4.391z M46.588,77.589L15.266,46.262l31.321-31.348
+      l31.348,31.348L46.588,77.589z"/>
+  </g>
+
+  <!-- OXFORD text -->
+  <text x="80" y="338" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="72" fill="#0E1F2E" letter-spacing="4">OXFORD</text>
+  <!-- MEDICAL text -->
+  <text x="80" y="418" font-family="Arial, Helvetica, sans-serif" font-weight="400" font-size="72" fill="#1DB7ED" letter-spacing="4">MEDICAL</text>
+
+  <!-- Divider -->
+  <rect x="80" y="448" width="120" height="4" fill="#6BD333" rx="2"/>
+
+  <!-- Subtext -->
+  <text x="80" y="500" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#4a5568">Оперативна гінекологія · Львів</text>
+  <text x="80" y="540" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#9BA6B0">oxford-med.check-up.in.ua</text>
+
+  <!-- Right side decorative element -->
+  <rect x="820" y="140" width="300" height="300" rx="24" fill="white" fill-opacity="0.6"/>
+  <text x="970" y="270" font-family="Arial, Helvetica, sans-serif" font-size="90" text-anchor="middle" fill="#1DB7ED" opacity="0.3">+</text>
+  <text x="970" y="370" font-family="Arial, Helvetica, sans-serif" font-size="20" text-anchor="middle" fill="#0E94C4" font-weight="600">check-up.in.ua</text>
+  <text x="970" y="400" font-family="Arial, Helvetica, sans-serif" font-size="16" text-anchor="middle" fill="#9BA6B0">медична платформа</text>
+
+  <!-- Bottom bar -->
+  <rect y="622" width="1200" height="8" fill="#6BD333"/>
+</svg>
