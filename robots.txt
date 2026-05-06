@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://oxford-med.check-up.in.ua/sitemap.xml

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48" fill="none" aria-label="Oxford Medical">
+  <!-- Icon mark: cross/plus with cyan + green accent -->
+  <rect x="0" y="10" width="8" height="28" rx="3" fill="#1DB7ED"/>
+  <rect x="10" y="10" width="28" height="8" rx="3" fill="#1DB7ED"/>
+  <rect x="10" y="30" width="28" height="8" rx="3" fill="#6BD333"/>
+  <rect x="30" y="18" width="8" height="20" rx="3" fill="#6BD333"/>
+  <!-- Text: Oxford Medical -->
+  <text x="50" y="20" font-family="'Fixel Display', 'Segoe UI', sans-serif" font-size="16" font-weight="700" fill="#0E1F2E" letter-spacing="-0.3">Oxford</text>
+  <text x="50" y="38" font-family="'Fixel Text', 'Segoe UI', sans-serif" font-size="13" font-weight="500" fill="#1DB7ED" letter-spacing="0.5">MEDICAL</text>
+</svg>
