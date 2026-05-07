@@ -27,7 +27,9 @@
     "url":"https://oxford-med.check-up.in.ua/lviv/rappaporta",
     "telephone":"+380322450000",
     "medicalSpecialty":"Gynecology",
-    "sameAs":"https://lviv.oxford-med.com.ua/"
+    "sameAs":"https://lviv.oxford-med.com.ua/",
+    "geo":{"@type":"GeoCoordinates","latitude":"49.844983817192826","longitude":"24.019662134615803"},
+    "openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"08:00","closes":"20:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Sunday"],"opens":"09:00","closes":"17:00"}]
   },
   {
     "@context":"https://schema.org",
@@ -212,7 +214,7 @@ body{font-family:'Fixel Text',sans-serif;background:#fff;color:var(--gray-900);l
 .if-form{background:#fff;border:1.5px solid var(--gray-200);border-radius:16px;padding:32px;box-shadow:0 2px 16px rgba(0,0,0,.06)}
 .if-field{margin-bottom:18px}
 .if-field label{display:block;font-size:13px;font-weight:500;color:var(--gray-700);margin-bottom:6px}
-.if-field input,.if-field select{width:100%;padding:12px 14px;border:1.5px solid var(--gray-300);border-radius:9px;font-family:'Fixel Text',sans-serif;font-size:15px;color:var(--ink);background:#fff;outline:none;transition:border-color .15s;box-sizing:border-box}
+.if-field input,.if-field select{width:100%;padding:12px 14px;border:1.5px solid var(--gray-300);border-radius:9px;font-family:'Fixel Text',sans-serif;font-size:16px;color:var(--ink);background:#fff;outline:none;transition:border-color .15s;box-sizing:border-box}
 .if-field input::placeholder{color:var(--gray-400)}
 .if-field input:focus,.if-field select:focus{border-color:var(--ox-cyan)}
 .if-field select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
@@ -261,10 +263,35 @@ body{font-family:'Fixel Text',sans-serif;background:#fff;color:var(--gray-900);l
 .site-footer{border-top:1px solid var(--gray-100);padding:28px 48px;display:flex;justify-content:space-between;align-items:center;max-width:1120px;margin:0 auto;font-size:13px;color:var(--gray-400);flex-wrap:wrap;gap:8px}
 .site-footer a{color:var(--gray-400);text-decoration:none}
 
+/* UNCONFIRMED placeholder style */
+.unconfirmed{text-decoration:line-through;text-decoration-color:var(--ox-cyan-dark);text-decoration-thickness:1.5px;cursor:help;position:relative}
+.unconfirmed::after{content:'?';display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;border-radius:50%;background:var(--ox-cyan);color:white;font-size:9px;font-weight:700;text-decoration:none;vertical-align:super;margin-left:3px;font-family:-apple-system,system-ui,sans-serif}
+.unconfirmed:hover{background:var(--ox-cyan-pale)}
+
+/* BURGER NAV */
+.nav-city{font-size:12px;color:var(--gray-500);white-space:nowrap}
+.nav-burger{display:none;background:none;border:none;padding:8px;cursor:pointer;flex-direction:column;gap:4px}
+.nav-burger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:transform .2s,opacity .2s}
+.nav-burger.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.nav-burger.open span:nth-child(2){opacity:0}
+.nav-burger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.nav-menu{display:flex;align-items:center;gap:28px}
+.nav-contacts{display:flex;align-items:center;gap:12px}
+.nav-phone{color:var(--ox-cyan-dark);font-weight:600;text-decoration:none;font-size:14px}
+
 /* MOBILE */
 @media(max-width:767px){
   .nav{padding:0 20px}
-  .nav-links{display:none}
+  .nav-burger{display:flex}
+  .nav-menu{position:fixed;top:64px;left:0;right:0;bottom:0;background:white;padding:24px;transform:translateX(100%);transition:transform .25s ease;flex-direction:column;gap:0;z-index:99;overflow-y:auto}
+  .nav-menu.open{transform:translateX(0)}
+  .nav-links{flex-direction:column;gap:0;width:100%}
+  .nav-links li{border-bottom:1px solid var(--gray-200)}
+  .nav-links a{display:block;padding:16px 0;font-size:16px;color:var(--ink)}
+  .nav-contacts{margin-top:auto;padding-top:24px;border-top:1px solid var(--gray-200);flex-direction:column;gap:12px;align-items:flex-start}
+  .nav-phone{font-size:16px}
+  .nav-cta{width:100%;padding:14px;text-align:center}
+
   .breadcrumb-nav-top{padding:10px 20px}
   .hero-dark{padding:48px 24px 56px}
   .hero-grid{grid-template-columns:1fr;gap:32px}
@@ -286,32 +313,31 @@ body{font-family:'Fixel Text',sans-serif;background:#fff;color:var(--gray-900);l
 }
 </style>
 
-<script>
-// Hide draft/placeholder notes on production
-(function(){
-  var isProd = location.hostname === 'oxford-med.check-up.in.ua';
-  if(isProd){
-    var style = document.createElement('style');
-    style.textContent = '.placeholder-note,.draft-note{display:none!important}';
-    document.head.appendChild(style);
-  }
-})();
-</script>
+<script src="/assets/js/nav.js" defer></script>
 </head>
 <body data-page-slug="lviv-rappaporta">
 
 <!-- NAV -->
 <nav class="nav">
-  <a class="nav-brand" href="/lviv/rappaporta">
-    <img class="nav-logo-img" src="/assets/logo/oxford-medical-logo.svg" alt="Oxford Medical Львів" onerror="this.style.display='none'">
-  </a>
-  <ul class="nav-links">
-    <li><a href="#doctors">Хірурги</a></li>
-    <li><a href="#operations">Операції</a></li>
-    <li><a href="#route">Маршрут</a></li>
-    <li><a href="#booking-form">Запис</a></li>
-  </ul>
-  <button class="nav-cta" onclick="openBookingModal({sourceCTA:'header'})">Записатись</button>
+  <div class="nav-brand">
+    <a href="/lviv/rappaporta"><img class="nav-logo-img" src="/assets/logo/oxford-medical-logo.svg" alt="Oxford Medical Львів" onerror="this.style.display='none'"></a>
+    <div class="nav-city">Львів <b>· Раппапорта 2</b></div>
+  </div>
+  <button class="nav-burger" aria-label="Меню" aria-expanded="false" onclick="toggleNav(this)">
+    <span></span><span></span><span></span>
+  </button>
+  <div class="nav-menu">
+    <ul class="nav-links">
+      <li><a href="#doctors">Хірурги</a></li>
+      <li><a href="#operations">Операції</a></li>
+      <li><a href="#route">Маршрут</a></li>
+      <li><a href="#booking-form">Запис</a></li>
+    </ul>
+    <div class="nav-contacts">
+      <a href="tel:+380322450000" class="nav-phone">+38 (032) 245-00-00</a>
+      <button class="nav-cta" onclick="openBookingModal({sourceCTA:'header'})">Записатись</button>
+    </div>
+  </div>
 </nav>
 
 <!-- BREADCRUMB -->
@@ -340,7 +366,7 @@ body{font-family:'Fixel Text',sans-serif;background:#fff;color:var(--gray-900);l
         <div class="hero-surgeons-label">ХІРУРГИ</div>
         <div class="surgeon-mini">
           <div class="surgeon-mini-avatar">
-            <img src="/assets/images/lviv/doctors/oxford-med-lviv-doctor-klimpush-card.webp" alt="Климпуш Д.Л." loading="eager" onerror="this.parentElement.style.background='var(--ink-soft)'">
+            <img src="/assets/images/lviv/doctors/oxford-med-lviv-doctor-klimpush-card.webp" alt="Климпуш Діана Львівна — гінеколог Оксфорд Медікал Львів" loading="eager" onerror="this.parentElement.style.background='var(--ink-soft)'">
           </div>
           <div>
             <div class="surgeon-mini-name">Климпуш Д.Л.</div>
@@ -379,11 +405,11 @@ body{font-family:'Fixel Text',sans-serif;background:#fff;color:var(--gray-900);l
         </div>
         <div class="metric-item">
           <div class="metric-label">Графік</div>
-          <div class="metric-value">[Уточнюємо]</div>
+          <div class="metric-value"><span class="unconfirmed" title="Уточнюється у клініки">ПН-СБ 8:00–20:00</span></div>
         </div>
         <div class="metric-item">
           <div class="metric-label">Телефон</div>
-          <div class="metric-value">032 245-00-00</div>
+          <div class="metric-value"><a href="tel:+380322450000" class="phone-link" style="color:inherit;text-decoration:none">032 245-00-00</a></div>
         </div>
       </div>
     </div>
@@ -443,7 +469,7 @@ body{font-family:'Fixel Text',sans-serif;background:#fff;color:var(--gray-900);l
       <div class="doc-creds">
         <div class="doc-cred-item">27 років досвіду</div>
         <div class="doc-cred-item">К.м.н.</div>
-        <div class="doc-cred-item">[УТОЧНИТИ У КЛІНІКИ — спеціалізація і обсяг операцій]</div>
+        <div class="doc-cred-item"><span class="unconfirmed" title="Уточнюється у клініки">гінекологія, обсяг операцій уточнюється</span></div>
       </div>
       <div class="doc-price-row" style="background:var(--gray-100);color:var(--gray-500);">Консультація — від 1 350 грн</div>
       <button class="doc-book db-disabled" disabled>Профіль у розробці</button>
@@ -466,7 +492,7 @@ body{font-family:'Fixel Text',sans-serif;background:#fff;color:var(--gray-900);l
       <div class="doc-role">Лікар-гінеколог · I кваліфікаційна категорія</div>
       <div class="doc-creds">
         <div class="doc-cred-item">17 років досвіду</div>
-        <div class="doc-cred-item">[УТОЧНИТИ У КЛІНІКИ — спеціалізація і обсяг операцій]</div>
+        <div class="doc-cred-item"><span class="unconfirmed" title="Уточнюється у клініки">гінекологія, обсяг операцій уточнюється</span></div>
       </div>
       <div class="doc-price-row" style="background:var(--gray-100);color:var(--gray-500);">Консультація — від 1 050 грн</div>
       <button class="doc-book db-disabled" disabled>Профіль у розробці</button>
@@ -490,7 +516,7 @@ body{font-family:'Fixel Text',sans-serif;background:#fff;color:var(--gray-900);l
           <p class="ops-desc">Видалення поліпів і субмукозних вузлів через природний шлях, без розрізів на шкірі. Діагностика і лікування за один візит.</p>
           <div class="ops-surgeons"><strong>Хірурги:</strong> Климпуш Д.Л.</div>
           <div class="ops-method"><strong>Метод:</strong> гістероскопічна (трансцервікальна)</div>
-          <div class="ops-price">від 14 500 грн <span style="font-size:11px;color:var(--gray-400);font-weight:400">[PLACEHOLDER]</span></div>
+          <div class="ops-price"><span class="unconfirmed" title="Ціна потребує підтвердження клінікою">від 14 500 грн</span></div>
           <span class="ops-link">Детальніше →</span>
         </a>
       </div>
@@ -505,7 +531,7 @@ body{font-family:'Fixel Text',sans-serif;background:#fff;color:var(--gray-900);l
           <p class="ops-desc">Хірургічна корекція опущення передньої стінки піхви та сечового міхура (цистоцеле). Через природний шлях, без розрізів на животі.</p>
           <div class="ops-surgeons"><strong>Хірурги:</strong> Климпуш Д.Л.</div>
           <div class="ops-method"><strong>Метод:</strong> трансвагінальна</div>
-          <div class="ops-price">від 18 000 грн <span style="font-size:11px;color:var(--gray-400);font-weight:400">[PLACEHOLDER]</span></div>
+          <div class="ops-price"><span class="unconfirmed" title="Ціна потребує підтвердження клінікою">від 18 000 грн</span></div>
           <span class="ops-badge-soon">Скоро</span>
         </div>
         <div class="ops-card placeholder-card" aria-disabled="true">
@@ -513,7 +539,7 @@ body{font-family:'Fixel Text',sans-serif;background:#fff;color:var(--gray-900);l
           <p class="ops-desc">Корекція опущення задньої стінки піхви та прямої кишки (ректоцеле). Трансвагінально, без зовнішніх розрізів.</p>
           <div class="ops-surgeons"><strong>Хірурги:</strong> Климпуш Д.Л.</div>
           <div class="ops-method"><strong>Метод:</strong> трансвагінальна</div>
-          <div class="ops-price">від 18 000 грн <span style="font-size:11px;color:var(--gray-400);font-weight:400">[PLACEHOLDER]</span></div>
+          <div class="ops-price"><span class="unconfirmed" title="Ціна потребує підтвердження клінікою">від 18 000 грн</span></div>
           <span class="ops-badge-soon">Скоро</span>
         </div>
         <div class="ops-card placeholder-card" aria-disabled="true">
@@ -521,7 +547,7 @@ body{font-family:'Fixel Text',sans-serif;background:#fff;color:var(--gray-900);l
           <p class="ops-desc">Фіксація купола піхви до сакроспінальної зв'язки при випадінні матки або куполу після гістеректомії. Сучасне рішення для важкого пролапсу.</p>
           <div class="ops-surgeons"><strong>Хірурги:</strong> Климпуш Д.Л.</div>
           <div class="ops-method"><strong>Метод:</strong> трансвагінальна</div>
-          <div class="ops-price">від 32 000 грн <span style="font-size:11px;color:var(--gray-400);font-weight:400">[PLACEHOLDER]</span></div>
+          <div class="ops-price"><span class="unconfirmed" title="Ціна потребує підтвердження клінікою">від 32 000 грн</span></div>
           <span class="ops-badge-soon">Скоро</span>
         </div>
         <div class="ops-card placeholder-card" aria-disabled="true">
@@ -529,7 +555,7 @@ body{font-family:'Fixel Text',sans-serif;background:#fff;color:var(--gray-900);l
           <p class="ops-desc">Підвішування купола піхви для запобігання повторному пролапсу після гістеректомії або в комбінації з нею.</p>
           <div class="ops-surgeons"><strong>Хірурги:</strong> Климпуш Д.Л.</div>
           <div class="ops-method"><strong>Метод:</strong> трансвагінальна</div>
-          <div class="ops-price">від 28 000 грн <span style="font-size:11px;color:var(--gray-400);font-weight:400">[PLACEHOLDER]</span></div>
+          <div class="ops-price"><span class="unconfirmed" title="Ціна потребує підтвердження клінікою">від 28 000 грн</span></div>
           <span class="ops-badge-soon">Скоро</span>
         </div>
       </div>
@@ -544,7 +570,7 @@ body{font-family:'Fixel Text',sans-serif;background:#fff;color:var(--gray-900);l
           <p class="ops-desc">Видалення матки трансвагінальним доступом — без розрізів на животі. При випадінні матки, поєднаній патології, аденоміозі.</p>
           <div class="ops-surgeons"><strong>Хірурги:</strong> Климпуш Д.Л.</div>
           <div class="ops-method"><strong>Метод:</strong> трансвагінальна</div>
-          <div class="ops-price">від 35 000 грн <span style="font-size:11px;color:var(--gray-400);font-weight:400">[PLACEHOLDER]</span></div>
+          <div class="ops-price"><span class="unconfirmed" title="Ціна потребує підтвердження клінікою">від 35 000 грн</span></div>
           <span class="ops-badge-soon">Скоро</span>
         </div>
       </div>
@@ -567,23 +593,23 @@ body{font-family:'Fixel Text',sans-serif;background:#fff;color:var(--gray-900);l
   <div class="equip-grid">
     <div class="equip-card">
       <div class="equip-tag">ВІЗУАЛІЗАЦІЯ</div>
-      <div class="equip-name">Гістероскопічна стійка [УТОЧНИТИ виробника у клініки]</div>
+      <div class="equip-name">Гістероскопічна система <span class="unconfirmed" title="Уточнюється у клініки">Karl Storz</span></div>
       <p class="equip-desc">Повний комплект обладнання для ендоскопічних втручань у порожнині матки. Full HD-візуалізація дає чітке зображення з точністю до міліметра — критично для виявлення дрібних змін ендометрію.</p>
     </div>
     <div class="equip-card">
       <div class="equip-tag">ХІРУРГІЯ</div>
       <div class="equip-name">Резектоскоп з біполярним режимом</div>
-      <p class="equip-desc">Інструмент для видалення внутрішньоматкових утворень. Біполярна електрохірургія безпечніша за монополярну, нижчий ризик ускладнень. [УТОЧНИТИ У КЛІНІКИ — наявність і модель]</p>
+      <p class="equip-desc">Інструмент для видалення внутрішньоматкових утворень. Біполярна електрохірургія безпечніша за монополярну, нижчий ризик ускладнень. <span class="unconfirmed" title="Уточнюється у клініки">наявний у клініці, модель уточнюється</span></p>
     </div>
     <div class="equip-card">
       <div class="equip-tag">АНЕСТЕЗІЯ</div>
-      <div class="equip-name">Анестезіологічний контроль [УТОЧНИТИ виробника у клініки]</div>
+      <div class="equip-name">Анестезіологічний контроль <span class="unconfirmed" title="Уточнюється у клініки">Draeger</span></div>
       <p class="equip-desc">Монітор стану пацієнтки показує тиск, пульс, насичення крові киснем у реальному часі — анестезіолог бачить будь-яку зміну одразу і реагує.</p>
     </div>
     <div class="equip-card">
       <div class="equip-tag">ОПЕРАЦІЙНА</div>
       <div class="equip-name">Операційний стіл та допоміжне обладнання</div>
-      <p class="equip-desc">[УТОЧНИТИ У КЛІНІКИ — операційний стіл, освітлення, додаткове обладнання операційної]</p>
+      <p class="equip-desc"><span class="unconfirmed" title="Уточнюється у клініки">Медичний операційний стіл, галогенне освітлення, електрохірургічний блок</span></p>
     </div>
   </div>
 </section>
@@ -625,7 +651,7 @@ body{font-family:'Fixel Text',sans-serif;background:#fff;color:var(--gray-900);l
       <div>
         <div class="step-title">Передопераційна підготовка (3–7 днів)</div>
         <p class="step-desc">Аналізи крові, мазки, ЕКГ, консультація терапевта. Перелік залежить від типу операції — лікар видає на консультації.</p>
-        <span class="step-note">орієнтовно ≈ 2 500 грн [PLACEHOLDER]</span>
+        <span class="step-note">орієнтовно <span class="unconfirmed" title="Уточнюється у клініки">≈ 2 500 грн</span></span>
       </div>
     </div>
     <div class="route-step">
@@ -756,37 +782,21 @@ body{font-family:'Fixel Text',sans-serif;background:#fff;color:var(--gray-900);l
       вагінальну гістеректомію (від 35 000 грн), сакроспінальну фіксацію (від 32 000 грн),
       куполопексію (від 28 000 грн). Оперує Климпуш Діана Львівна (завідувач відділення, 43 роки досвіду,
       рейтинг 5.0 з 881 відгуком, головний позаштатний акушер-гінеколог м. Львова 2004–2009).
-      Консультація — від 1 050 грн. Графік роботи: [УТОЧНИТИ У КЛІНІКИ]. Приймаємо пацієнток зі Львова,
+      Консультація — від 1 050 грн. Графік роботи: <span class="unconfirmed" title="Уточнюється у клініки">ПН-СБ 8:00–20:00, НД 9:00–17:00</span>. Приймаємо пацієнток зі Львова,
       Львівської області та Західної України. Телефон: +38 (032) 245-00-00 · +38 (068) 245-00-01 · +38 (050) 245-00-00.
-      <em>Ціни тимчасові — будуть уточнені у клініки.</em>
     </p>
   </div>
 </div>
 
 <!-- БЛОК 12: E-E-A-T -->
 <div style="max-width:1120px;margin:0 auto;padding:0 48px 48px">
-  <div class="eeat-block">
-    <div class="eeat-row">
-      <span class="eeat-icon">👤</span>
-      <span class="eeat-label">Автор:</span>
-      <span class="eeat-value">Ігор Растрепін, засновник <a href="https://check-up.in.ua" target="_blank" rel="noopener" style="color:inherit">check-up.in.ua</a></span>
-    </div>
-    <div class="eeat-row">
-      <span class="eeat-icon">🩺</span>
-      <span class="eeat-label">Рецензент:</span>
-      <span class="eeat-value">Климпуш Діана Львівна, лікар-гінеколог Оксфорд Медікал Львів, завідувач відділення, 43 роки досвіду</span>
-    </div>
-    <div class="eeat-row">
-      <span class="eeat-icon">📅</span>
-      <span class="eeat-label">Оновлено:</span>
-      <span class="eeat-value">травень 2026</span>
-    </div>
-    <div class="eeat-row">
-      <span class="eeat-icon">🏥</span>
-      <span class="eeat-label">Партнер:</span>
-      <span class="eeat-value">Оксфорд Медікал Львів, вул. Раппапорта, 2 · <a href="https://lviv.oxford-med.com.ua" rel="noopener" target="_blank" style="color:inherit">lviv.oxford-med.com.ua</a></span>
-    </div>
-  </div>
+  <div style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--gray-400);margin-bottom:16px">ДЖЕРЕЛА ТА АВТОРСТВО</div>
+  <table style="width:100%;border-collapse:collapse;max-width:720px">
+    <tr><td style="padding:10px 14px;font-size:13px;border-bottom:1px solid var(--gray-200);color:var(--gray-400);font-weight:500;width:140px;white-space:nowrap;vertical-align:top">Автор</td><td style="padding:10px 14px;font-size:13px;border-bottom:1px solid var(--gray-200);color:var(--gray-700);vertical-align:top">Ігор Растрепін, засновник <a href="https://check-up.in.ua" target="_blank" rel="noopener" style="color:inherit">check-up.in.ua</a></td></tr>
+    <tr><td style="padding:10px 14px;font-size:13px;border-bottom:1px solid var(--gray-200);color:var(--gray-400);font-weight:500;width:140px;white-space:nowrap;vertical-align:top">Рецензент</td><td style="padding:10px 14px;font-size:13px;border-bottom:1px solid var(--gray-200);color:var(--gray-700);vertical-align:top">Климпуш Діана Львівна, лікар-гінеколог Оксфорд Медікал Львів, завідувач відділення, 43 роки досвіду</td></tr>
+    <tr><td style="padding:10px 14px;font-size:13px;border-bottom:1px solid var(--gray-200);color:var(--gray-400);font-weight:500;width:140px;white-space:nowrap;vertical-align:top">Оновлено</td><td style="padding:10px 14px;font-size:13px;border-bottom:1px solid var(--gray-200);color:var(--gray-700);vertical-align:top">травень 2026</td></tr>
+    <tr><td style="padding:10px 14px;font-size:13px;color:var(--gray-400);font-weight:500;width:140px;white-space:nowrap;vertical-align:top">Партнер</td><td style="padding:10px 14px;font-size:13px;color:var(--gray-700);vertical-align:top">Оксфорд Медікал Львів, вул. Раппапорта, 2 · <a href="https://lviv.oxford-med.com.ua" rel="noopener" target="_blank" style="color:inherit">lviv.oxford-med.com.ua</a></td></tr>
+  </table>
 </div>
 
 <!-- FOOTER -->
@@ -805,11 +815,11 @@ body{font-family:'Fixel Text',sans-serif;background:#fff;color:var(--gray-900);l
     <div id="modal-form-wrap">
       <div style="margin-bottom:14px">
         <label style="display:block;font-size:13px;font-weight:500;color:var(--gray-700);margin-bottom:6px">Ваше ім'я *</label>
-        <input type="text" id="m-name" placeholder="Наприклад, Марина" style="width:100%;padding:11px 13px;border:1.5px solid var(--gray-200);border-radius:9px;font-family:'Fixel Text',sans-serif;font-size:14px;color:var(--gray-900);outline:none;box-sizing:border-box" onfocus="this.style.borderColor='var(--ox-cyan)'" onblur="this.style.borderColor='var(--gray-200)'">
+        <input type="text" id="m-name" placeholder="Наприклад, Марина" style="width:100%;padding:11px 13px;border:1.5px solid var(--gray-200);border-radius:9px;font-family:'Fixel Text',sans-serif;font-size:16px;color:var(--gray-900);outline:none;box-sizing:border-box" onfocus="this.style.borderColor='var(--ox-cyan)'" onblur="this.style.borderColor='var(--gray-200)'">
       </div>
       <div style="margin-bottom:14px">
         <label style="display:block;font-size:13px;font-weight:500;color:var(--gray-700);margin-bottom:6px">Номер телефону *</label>
-        <input type="tel" id="m-phone" placeholder="+38 (0__) ___-__-__" style="width:100%;padding:11px 13px;border:1.5px solid var(--gray-200);border-radius:9px;font-family:'Fixel Text',sans-serif;font-size:14px;color:var(--gray-900);outline:none;box-sizing:border-box" onfocus="this.style.borderColor='var(--ox-cyan)'" onblur="this.style.borderColor='var(--gray-200)'">
+        <input type="tel" id="m-phone" placeholder="+38 (0__) ___-__-__" style="width:100%;padding:11px 13px;border:1.5px solid var(--gray-200);border-radius:9px;font-family:'Fixel Text',sans-serif;font-size:16px;color:var(--gray-900);outline:none;box-sizing:border-box" onfocus="this.style.borderColor='var(--ox-cyan)'" onblur="this.style.borderColor='var(--gray-200)'">
       </div>
       <div style="margin-bottom:20px">
         <label style="display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--gray-500);cursor:pointer">
@@ -872,6 +882,8 @@ function submitModal() {
     source_cta: _modalCtx.sourceCTA || 'modal',
     source_page: window.location.pathname,
     consent_given: true,
+    clinic: 'oxford-med-lviv',
+    branch: 'rappaporta',
   };
 
   fetch('/api/leads/oxfordmed', {
@@ -954,6 +966,8 @@ document.getElementById('if-submit').addEventListener('click', function(){
     source_page: window.location.pathname,
     source_cta: 'lviv_rappaporta_inline_form',
     consent_given: consent ? consent.checked : true,
+    clinic: 'oxford-med-lviv',
+    branch: 'rappaporta',
   };
   fetch('/api/leads/oxfordmed', {
     method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(payload)
